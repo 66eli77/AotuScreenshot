@@ -1,0 +1,18 @@
+{
+  "name": "postman-browserstack-test",
+  "author": "Eli Dai",
+  "version": "1.0.0",
+  "license": "No License",
+  "private": "true",
+  "description": "Try BrowserStack Testing API",
+  "main": "app.js",
+  "scripts": {
+    "shoot": "node scripts/screenshoot.js"
+  },
+  "devDependencies": {
+    "browserstack": "1.5.0"
+  },
+  "engines": {
+    "node": "6.12.0"
+  }
+}
