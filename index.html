@@ -11,5 +11,16 @@
 
         <p class="page-title">Hello world! This is HTML5 Boilerplate.</p>
 
+        <div id="container"></div>
     </body>
+
+    <script>
+        var scrShots = [];
+        var content = "";
+
+        scrShots.forEach(s => {
+            content += "<img src='" + s + "' />";
+        });
+        document.getElementById('container').innerHTML = content;
+    </script>
 </html>
