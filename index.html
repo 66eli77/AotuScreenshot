@@ -9,17 +9,17 @@
     </head>
     <body>
 
-        <p class="page-title">Hello world! This is HTML5 Boilerplate.</p>
+        <p class="page-title">Screenshots for Postman Static Website</p>
 
         <div id="container"></div>
     </body>
 
     <script>
-        var scrShots = ["https://www.browserstack.com/screenshots/a95d31d437b1dd79120dd20893f58aa7d401dd84/thumb_win7_chrome_42.0.jpg"];
+        var scrShots = [{"browser":"ie","browser_version":"9.0","os":"Windows","os_version":"7","device":null,"image_url":"https://www.browserstack.com/screenshots/48aaf525d759ab2a93fa4319642a0a105a9c52f1/win7_ie_9.0.png","thumb_url":"https://www.browserstack.com/screenshots/48aaf525d759ab2a93fa4319642a0a105a9c52f1/thumb_win7_ie_9.0.jpg","state":"done","url":"http://new-homepage.www.getpostman-beta.com","orientation":null,"id":"87d7e3ab9aaf78cd75dcd25c4577d18eae928617","created_at":"2018-02-14 19:52:45 UTC"},{"browser":"ie","browser_version":"9.0","os":"Windows","os_version":"7","device":null,"image_url":"https://www.browserstack.com/screenshots/48aaf525d759ab2a93fa4319642a0a105a9c52f1/win7_ie_9.0.png","thumb_url":"https://www.browserstack.com/screenshots/48aaf525d759ab2a93fa4319642a0a105a9c52f1/thumb_win7_ie_9.0.jpg","state":"done","url":"http://new-homepage.www.getpostman-beta.com","orientation":null,"id":"1fbce7040cd4b4b774eb7e0b5e2cadfec1de5f7f","created_at":"2018-02-14 19:52:45 UTC"},{"browser":"firefox","browser_version":"34.0","os":"Windows","os_version":"7","device":null,"image_url":"https://www.browserstack.com/screenshots/48aaf525d759ab2a93fa4319642a0a105a9c52f1/win7_firefox_34.0.png","thumb_url":"https://www.browserstack.com/screenshots/48aaf525d759ab2a93fa4319642a0a105a9c52f1/thumb_win7_firefox_34.0.jpg","state":"done","url":"http://new-homepage.www.getpostman-beta.com","orientation":null,"id":"cf387f75c7b630987981aab501ae8cce028ef1bb","created_at":"2018-02-14 19:52:45 UTC"},{"browser":"iPhone 5","browser_version":"","os":"ios","os_version":"6.0","device":"iPhone 5","image_url":"https://www.browserstack.com/screenshots/48aaf525d759ab2a93fa4319642a0a105a9c52f1/ios_iPhone-5_6.0_portrait.jpg","thumb_url":"https://www.browserstack.com/screenshots/48aaf525d759ab2a93fa4319642a0a105a9c52f1/thumb_ios_iPhone-5_6.0_portrait.jpg","state":"done","url":"http://new-homepage.www.getpostman-beta.com","orientation":null,"id":"31580ec1af99a434c69c6719433cfacf0cf34830","created_at":"2018-02-14 19:52:46 UTC"},{"browser":"Google Nexus 5","browser_version":"","os":"android","os_version":"5.0","device":"Google Nexus 5","image_url":"https://www.browserstack.com/screenshots/48aaf525d759ab2a93fa4319642a0a105a9c52f1/android_Google-Nexus-5_5.0_portrait.png","thumb_url":"https://www.browserstack.com/screenshots/48aaf525d759ab2a93fa4319642a0a105a9c52f1/thumb_android_Google-Nexus-5_5.0_portrait.jpg","state":"done","url":"http://new-homepage.www.getpostman-beta.com","orientation":null,"id":"ac447f6b083f6bdd3b5095cd10697167b8dff8f0","created_at":"2018-02-14 19:52:46 UTC"}];
         var content = "";
 
         scrShots.forEach(s => {
-            content += "<img src='" + s + "' />";
+            content += "<a href='" + s.image_url + "' target='_blank'><img class='thumb' src='" + s.thumb_url + "' /><span>" + s.os + " " + s.os_version + " " + s.browser + " " + s.browser_version + "</span><span>" + s.url + "</span></a>";
         });
         document.getElementById('container').innerHTML = content;
     </script>

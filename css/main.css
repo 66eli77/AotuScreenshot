@@ -1,3 +1,45 @@
+body {
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
 .page-title {
-	color: green;
+	color: white;
+	text-align: center;
+	font-size: 20px;
+    font-weight: bold;
+    background-color: #F26B3A;
+    margin: 0;
+    padding: 20px 0;
+}
+
+#container {
+	text-align: center;
+	margin-top: 50px;
+}
+
+.thumb {
+	margin: 10px;
+}
+
+a {
+	display: inline-block;
+	margin: 10px;
+	background-color: #f3f3f3;
+    padding: 10px 10px 20px 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(40, 40, 40, .3);
+    text-decoration: none;
+    width: 230px;
+}
+
+span {
+	display: block;
+	color: black;
+	margin-top: 10px;
+}
+
+span:nth-child(3) {
+	margin-top: 10px;
+	font-size: 10px;
 }

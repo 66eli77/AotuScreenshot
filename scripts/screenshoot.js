@@ -13,24 +13,46 @@ var client = BrowserStack.createScreenshotClient({
   password: password
 });
 
-// client.getBrowsers(function(err, browsers) {
-
-//   browsers.map(util.validateBrowserObject);
-
-// });
-
 console.log("should generate screenshots for multiple browsers");
 var options = {
-  url: "https://www.getpostman.com/pro",
-  // browsers: ["40.0", "41.0", "42.0"].map(function(v) {
-  browsers: ["42.0"].map(function(v) {
-    return {
-      os: "Windows",
-      os_version: "7",
-      browser: "chrome",
-      browser_version: v
-    };
-  })
+  url: "http://new-homepage.www.getpostman-beta.com",
+  wait_time: 10,
+  browsers: [
+    {
+      "os": "Windows",
+      "os_version": "7",
+      "browser": "ie",
+      "browser_version": "9.0"
+    },
+    {
+      "os": "Windows",
+      "os_version": "7",
+      "browser": "ie",
+      "browser_version": "9.0"
+    },
+    {
+      "os": "Windows",
+      "os_version": "7",
+      "browser": "firefox",
+      "browser_version": "34.0"
+    },
+    {
+      "os": "OS X",
+      "os_version": "El Capitan",
+      "browser": "chrome",
+      "browser_version": "42.0"
+    },
+    {
+      "os": "ios",
+      "os_version": "6.0",
+      "device": "iPhone 5"
+    },
+    {
+      "os": "android",
+      "os_version": "5.0",
+      "device": "Google Nexus 6"
+    }
+  ]
 };
 
 client.generateScreenshots(options, function(err, job) {
@@ -38,35 +60,36 @@ client.generateScreenshots(options, function(err, job) {
   console.log('Job init:: ', job);
 
   if (err) {
-    console.log('eeee::: ', err);
-    console.warn("\t[WARN] worker %s did not run within timeout", job.job_id);
+    console.warn(err);
   } else {
-    pullJob(job.job_id, 30, 3000);
+    pullJob(job.job_id, 60, 3000);
   }
 });
 
 function pullJob(id, maxRetries, waitTime) {
-  maxRetries && client.getJob(id, function(err, job) {
-    if (job.state === "done") {
-      console.log('DONE:: ', job);
+  if (maxRetries) {
+    client.getJob(id, function(err, job) {
+      if (job.state === "done") {
+        console.log('DONE:: ', job);
 
-      var imageArr = [];
-      job.screenshots.forEach(i => {
-        imageArr.push(i.thumb_url);
-      });
-      // Write updated data to file
-      file = "./index.html";
-      fs.readFile(file, 'utf8', (e, data) => {
-        // selector = new RegExp(`[]`, 'ig');
-        // console.log('iiiii:::: ', selector, ' --- ', JSON.stringify(imageArr));
-        data = data.replace('[]', JSON.stringify(imageArr));
-        fs.writeFile(file, data, 'utf8', console.log.bind(null, `Updated index.html with screenshots`));
-      });
-      return;
-    } else {
-      setTimeout(function() {
-        pullJob(id, --maxRetries, waitTime);
-      }, waitTime);
-    }
-  });
+        // var imageArr = [];
+        // job.screenshots.forEach(i => {
+        //   imageArr.push(i.thumb_url);
+        // });
+        // Write updated data to file
+        file = "./index.html";
+        fs.readFile(file, 'utf8', (e, data) => {
+          data = data.replace(/\[.*\]/, JSON.stringify(job.screenshots));
+          fs.writeFile(file, data, 'utf8', console.log.bind(null, `Updated index.html with screenshots`));
+        });
+        return;
+      } else {
+        setTimeout(function() {
+          pullJob(id, --maxRetries, waitTime);
+        }, waitTime);
+      }
+    });
+  } else {
+    console.warn("Timeout...Job isn't done.");
+  }
 }
