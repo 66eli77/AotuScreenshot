@@ -28,7 +28,7 @@ var options = {
       "os": "Windows",
       "os_version": "7",
       "browser": "ie",
-      "browser_version": "9.0"
+      "browser_version": "10.0"
     },
     {
       "os": "Windows",
