@@ -21,7 +21,7 @@ var client = BrowserStack.createScreenshotClient({
 
 console.log("should generate screenshots for multiple browsers");
 var options = {
-  url: "https://www.getpostman.com/postman",
+  url: "https://www.getpostman.com/pro",
   // browsers: ["40.0", "41.0", "42.0"].map(function(v) {
   browsers: ["42.0"].map(function(v) {
     return {
@@ -38,6 +38,7 @@ client.generateScreenshots(options, function(err, job) {
   console.log('Job init:: ', job);
 
   if (err) {
+    console.log('eeee::: ', err);
     console.warn("\t[WARN] worker %s did not run within timeout", job.job_id);
   } else {
     pullJob(job.job_id, 30, 3000);
@@ -56,8 +57,9 @@ function pullJob(id, maxRetries, waitTime) {
       // Write updated data to file
       file = "./index.html";
       fs.readFile(file, 'utf8', (e, data) => {
-        selector = new RegExp(`[]`, 'ig');
-        data = data.replace(selector, JSON.stringify(imageArr));
+        // selector = new RegExp(`[]`, 'ig');
+        // console.log('iiiii:::: ', selector, ' --- ', JSON.stringify(imageArr));
+        data = data.replace('[]', JSON.stringify(imageArr));
         fs.writeFile(file, data, 'utf8', console.log.bind(null, `Updated index.html with screenshots`));
       });
       return;
